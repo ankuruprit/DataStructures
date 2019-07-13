@@ -1,0 +1,48 @@
+
+# DELETE A NODE AT Nth POSITION OF A LINKED LIST #
+
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = Node()
+
+    def insert(self, data):
+        temp = Node(data)
+        temp.next = self.head
+        self.head = temp
+
+    def print(self):
+        optlist = []
+        temp = self.head
+        while temp.next is not None:
+            optlist.insert(temp.data)
+            temp = temp.next
+        print(optlist)
+
+    def delete(self, pos):
+        temp1 = self.head
+        if pos == 1:
+            self.head = temp1.next
+            return
+
+        for num in range(pos-2):
+            temp1 = temp1.next  # temp1 points to (n-1)th node
+        temp2 = temp1.next   # temp2 points to nth node
+        temp1.next = temp2.next  # (n+1)th node
+
+
+if __name__ == '__main__':
+    my_list = LinkedList()
+    my_list.insert(2)
+    my_list.insert(3)
+    my_list.insert(4)
+    my_list.insert(5)
+    my_list.insert(6)
+    my_list.print()
+    pos = input("Enter the position : ")
+    my_list.delete(int(pos))
+    my_list.print()
