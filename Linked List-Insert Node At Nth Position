@@ -1,0 +1,48 @@
+# INSERT A NODE AT Nth POSITION OF A LINKED LIST #
+
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = Node()
+
+    def insert(self, data, pos):
+        temp1 = Node(data)
+
+        if pos == 1:
+            temp1.next = self.head
+            self.head = temp1
+            return
+
+        temp2 = self.head
+        for n in range(pos-2):
+            temp2 = temp2.next
+        temp1.next = temp2.next
+        temp2.next = temp1
+
+    def print(self):
+        optlist = []
+        temp = self.head
+        while temp.next is not None:
+            optlist.append(temp.data)
+            temp = temp.next
+        print(optlist)
+
+
+if __name__ == '__main__':
+    my_list = LinkedList()
+    my_list.insert(2, 1)  # List is [2]
+    my_list.insert(3, 2)  # List is [2, 3]
+    my_list.insert(4, 1)  # List is [4, 2, 3]
+    my_list.insert(5, 2)  # List is [4, 5, 2, 3]
+    my_list.print()
+
+
+# OUTPUT
+[4, 5, 2, 3]
+
+Process finished with exit code 0
