@@ -41,8 +41,3 @@ if __name__ == '__main__':
     my_list.insert(5, 2)  # List is [4, 5, 2, 3]
     my_list.print()
 
-
-# OUTPUT
-[4, 5, 2, 3]
-
-Process finished with exit code 0
