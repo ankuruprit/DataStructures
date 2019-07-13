@@ -11,25 +11,25 @@ class LinkedList:
         self.head = Node()
 
     # Append the node
-    def Append(self, data):
+    def insert(self, data):
         temp = Node(data)
         temp.next = self.head
         self.head = temp
         
     # Print the list as its created
-    def Print(self):
-        outPutList = []
+    def print(self):
+        optlist = []
         temp = self.head
         while temp.next != None:
-            outPutList.append(temp.data)
+            optlist.append(temp.data)
             temp = temp.next
-        print(outPutList)
+        print(optlist)
 
 # Main Function
 if __name__ == '__main__':
     my_list = LinkedList()
     nums = int(input("How many numbers? - "))
     for n in range(nums):
-        my_list.Append(int(input("Enter {} number: ".format(str(n+1)))))
-        my_list.Print()
+        my_list.insert(int(input("Enter {} number: ".format(str(n+1)))))
+        my_list.print()
 
