@@ -19,7 +19,7 @@ class LinkedList:
         optlist = []
         temp = self.head
         while temp.next is not None:
-            optlist.insert(temp.data)
+            optlist.append(temp.data)
             temp = temp.next
         print(optlist)
 
