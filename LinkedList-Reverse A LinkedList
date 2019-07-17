@@ -1,0 +1,56 @@
+# REVERSE A LINKED LIST #
+
+
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = Node()
+
+    def insert(self, data):
+        if self.head is None:
+            self.head = Node(data)
+        else:
+            current = self.head
+            while current.next is not None:
+                current = current.next
+            current.next = Node(data)
+
+    def print(self):
+        temp = self.head
+        output = []
+        while temp is not None:
+            if temp.data is not None:
+                output.append(temp.data)
+            temp = temp.next
+
+        print(output)
+
+    def reverse(self):
+        current = self.head
+        current = current.next
+        prev = None
+
+        while current is not None:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+
+        self.head = prev
+
+
+if __name__ == '__main__':
+    my_list = LinkedList()
+    my_list.insert(1)
+    my_list.insert(2)
+    my_list.insert(3)
+    my_list.insert(4)
+    my_list.insert(5)
+    my_list.print()
+    my_list.reverse()
+    my_list.print()
