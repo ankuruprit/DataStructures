@@ -35,6 +35,25 @@ class BstTree:
         else:
             return self.search(root.right, data)
 
+    # Find the minimum element in the BST
+    def findmin(self, root):
+        if root is None:
+            print("Tree is empty")
+        else:
+            while root.left is not None:
+                root = root.left
+            print('Smallest Element is {}'.format(root.data))
+
+    # Find the maximum element in BST
+    def findmax(self, root):
+        if root is None:
+            print("Tree is empty")
+        else:
+            while root.right is not None:
+                root = root.right
+            print('Highest Element is {}'.format(root.data))
+
+
 if __name__ == '__main__':
     r = BstNode(15)
     curr = BstTree()
@@ -50,3 +69,5 @@ if __name__ == '__main__':
     else:
         print("Number Not Found")
 
+    curr.findmin(r)
+    curr.findmax(r)
