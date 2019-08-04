@@ -1,0 +1,52 @@
+# Binary Search Tree Implementation
+
+class BstNode:
+    def __init__(self, data=None):
+        self.data = data
+        self.left = None
+        self.right = None
+
+class BstTree:
+
+    # To insert data in BST
+    def insert(self, root, node):
+        if root is None:
+            root = node
+        else:
+            if root.data > node.data:
+                if root.left is None:
+                    root.left = node
+                else:
+                    self.insert(root.left, node)
+            else:
+                if root.right is None:
+                    root.right = node
+                else:
+                    self.insert(root.right, node)
+
+    # To search an element in BST, returns True if Element is found
+    def search(self, root, data):
+        if root is None:
+            return False
+        elif root.data == data:
+            return True
+        elif data <= root.data:
+            return self.search(root.left, data)
+        else:
+            return self.search(root.right, data)
+
+if __name__ == '__main__':
+    r = BstNode(15)
+    curr = BstTree()
+
+    curr.insert(r, BstNode(10))
+    curr.insert(r, BstNode(20))
+    curr.insert(r, BstNode(25))
+    curr.insert(r, BstNode(8))
+    curr.insert(r, BstNode(12))
+
+    if curr.search(r, 50):
+        print("Number Found")
+    else:
+        print("Number Not Found")
+
