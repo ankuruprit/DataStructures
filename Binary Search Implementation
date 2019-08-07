@@ -63,7 +63,25 @@ class BstTree:
 
             height = max(leftheight, rightheight) + 1
             return height
+            
+            
+    # Return all paths from root to leaves
+    def binarytreepaths(self, root):
+        if root is None:
+            return []
+        if root.left is None and root.right is None:
+            return [str(root.data)]
 
+        # subtree is always a list, though it might be empty
+        left_subtree = self.binarytreepaths(root.left)
+        right_subtree = self.binarytreepaths(root.right)
+        full_subtree = left_subtree + right_subtree  # the last part of comprehension
+
+        list1 = []
+        for leaf in full_subtree:  # middle part of the comprehension
+            list1.append(str(root.data) + '->' + leaf)  # the left part
+
+        return list1
 
 if __name__ == '__main__':
     r = BstNode(15)
@@ -84,3 +102,7 @@ if __name__ == '__main__':
     curr.findmin(r)
     curr.findmax(r)
     print(curr.findheight(r))
+    
+    # print all paths from root
+    val = curr.binarytreepaths(r)
+    print(val)
