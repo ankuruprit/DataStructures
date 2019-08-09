@@ -1,0 +1,75 @@
+# Queue Implementation Using Circular Array
+
+class Queue:
+    def __init__(self, n):
+        self.front = -1
+        self.rear = -1
+        self.arr = [0]*n
+        self.arrlen = len(self.arr)
+
+    # To check whether Queue is empty or not
+    def isempty(self):
+        return self.front == -1 and self.rear == -1
+
+    # To check whether Queue is full or not
+    def isfull(self):
+        if (self.rear+1) % self.arrlen == self.front:
+            return True
+        else:
+            return False
+
+    # Adds element in the front.
+    def enqueue(self, x):
+        print('Enqueuing {}'.format(str(x)))
+
+        if self.isfull():
+            print('Error: Queue is full')
+            return
+        if self.isempty():
+            self.front = self.rear = 0
+        else:
+            self.rear = (self.rear + 1) % self.arrlen
+        self.arr[self.rear] = x
+
+    # Removes element from front end
+    def dequeue(self):
+        print('Dequeuing ')
+
+        if self.isempty():
+            print('Error: Queue is empty')
+            return
+        elif self.front == self.rear:
+            self.rear = self.front = -1
+        else:
+            self.front = (self.front+1) % self.arrlen
+
+    # Return element at front of queue.
+    def rtnfront(self):
+        if self.front == -1:
+            print('Error: cannot return front from an empty queue')
+            return -1
+        print('Number at front is : ' + str(self.arr[self.front]))
+
+    # Print elements in queue from front to rear
+    def printno(self):
+        count = (self.rear + self.arrlen - self.front) % self.arrlen + 1
+        arrstr = ''
+        for i in range(count):
+            index = (self.front + i) % self.arrlen  # Index of element while traversing from circularly from front
+            arrstr += ' ' + str(self.arr[index])
+        print('Queue   :' + arrstr)
+
+
+if __name__ == '__main__':
+    Q = Queue(5)
+    Q.enqueue(2)
+    Q.printno()
+    Q.enqueue(4)
+    Q.printno()
+    Q.enqueue(6)
+    Q.printno()
+    Q.dequeue()
+    Q.printno()
+    Q.enqueue(8)
+    Q.printno()
+    Q.rtnfront()
